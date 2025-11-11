@@ -1,0 +1,73 @@
+{
+  "name": "coding-assist-gemini",
+  "displayName": "Coding Assist with Gemini",
+  "description": "AI-powered coding assistant using Google's Gemini API",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "coding-assist-gemini.listFiles",
+        "title": "Coding Assist: List Files"
+      },
+      {
+        "command": "coding-assist-gemini.readFile",
+        "title": "Coding Assist: Read File"
+      },
+      {
+        "command": "coding-assist-gemini.askAI",
+        "title": "Coding Assist: Ask AI"
+      },
+      {
+        "command": "coding-assist-gemini.analyzeCode",
+        "title": "Coding Assist: Analyze Code Complexity"
+      },
+      {
+        "command": "coding-assist-gemini.findDuplicates",
+        "title": "Coding Assist: Find Duplicate Code"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "coding-assist-gemini.readFile",
+          "when": "explorerResourceIsFile",
+          "group": "navigation"
+        },
+        {
+          "command": "coding-assist-gemini.analyzeCode",
+          "when": "explorerResourceIsFile",
+          "group": "navigation"
+        },
+        {
+          "command": "coding-assist-gemini.findDuplicates",
+          "when": "explorerResourceIsFile",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "path": "^0.12.7"
+  }
+}

@@ -54,6 +54,11 @@ The agent uses Google's Generative AI (Gemini) API to make decisions and perform
 ├── docker-compose.yml          # Docker Compose configuration
 ├── .dockerignore               # Docker ignore file
 ├── requirements.txt            # Python dependencies
+├── vscode-extension/           # VS Code extension
+│   ├── src/                    # Extension source code
+│   ├── package.json            # Extension manifest
+│   ├── tsconfig.json           # TypeScript configuration
+│   └── README.md               # Extension documentation
 └── pyproject.toml              # Project dependencies and metadata
 ```
 
@@ -125,6 +130,32 @@ docker run --rm -it \
   -e OPENROUTER_API_KEY=your_openrouter_api_key_here \
   coding-assist-gemini "your request here"
 ```
+
+## VS Code Extension
+
+This project includes a VS Code extension that allows you to use the AI coding assistant directly from your editor.
+
+### Installation
+
+1. Navigate to the `vscode-extension` directory
+2. Run `npm install` to install dependencies
+3. Press `F5` to compile and run the extension in a new Extension Development Host window
+
+### Features
+
+- **List Files**: View all files in your workspace with size information
+- **Read File**: View the content of any file in your workspace
+- **Ask AI**: Ask questions to the Gemini AI about your code or general programming questions
+- **Analyze Code**: Get complexity analysis for your code files
+- **Find Duplicates**: Identify duplicate code blocks in your files
+
+### Extension Commands
+
+- `coding-assist-gemini.listFiles`: List all files in the workspace
+- `coding-assist-gemini.readFile`: Read the content of a file (right-click on file in explorer)
+- `coding-assist-gemini.askAI`: Ask a question to the AI
+- `coding-assist-gemini.analyzeCode`: Analyze code complexity (right-click on file in explorer)
+- `coding-assist-gemini.findDuplicates`: Find duplicate code blocks (right-click on file in explorer)
 
 ## Usage
 
