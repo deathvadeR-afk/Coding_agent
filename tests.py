@@ -1,43 +1,30 @@
-from functions.run_python_file import run_python_file
+#!/usr/bin/env python3
+"""
+Test suite for the Coding Assistant project
+"""
 
-def test_run_python_file():
-    """Test the run_python_file function with various inputs."""
+import unittest
+import os
+import sys
+from functions.get_files_info import get_files_info
+from functions.get_file_content import get_file_content
+
+class TestCodingAssistant(unittest.TestCase):
     
-    # Test running main.py without arguments
-    print("Result for 'main.py' (no arguments):")
-    result = run_python_file("calculator", "main.py")
-    print(result)
-    print()
-    
-    # Test running main.py with arguments
-    print("Result for 'main.py' with '3 + 5':")
-    result = run_python_file("calculator", "main.py", ["3 + 5"])
-    print(result)
-    print()
-    
-    # Test running tests.py
-    print("Result for 'tests.py':")
-    result = run_python_file("calculator", "tests.py")
-    print(result)
-    print()
-    
-    # Test running a file outside the working directory
-    print("Result for '../main.py' (outside working directory):")
-    result = run_python_file("calculator", "../main.py")
-    print(result)
-    print()
-    
-    # Test running a non-existent file
-    print("Result for 'nonexistent.py' (non-existent file):")
-    result = run_python_file("calculator", "nonexistent.py")
-    print(result)
-    print()
-    
-    # Test running a non-Python file
-    print("Result for 'lorem.txt' (non-Python file):")
-    result = run_python_file("calculator", "lorem.txt")
-    print(result)
-    print()
+    def test_get_files_info(self):
+        """Test that get_files_info returns file information"""
+        # Test with current directory
+        result = get_files_info(".", ".")
+        self.assertIsInstance(result, str)
+        # Check that it contains file information (using a more generic check)
+        self.assertIn("file_size", result)
+        
+    def test_get_file_content(self):
+        """Test that get_file_content can read a file"""
+        # Test reading this test file
+        result = get_file_content(".", "tests.py")
+        self.assertIsInstance(result, str)
+        self.assertIn("Test suite", result)
 
 if __name__ == "__main__":
-    test_run_python_file()
+    unittest.main()

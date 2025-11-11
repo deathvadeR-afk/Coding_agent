@@ -50,6 +50,10 @@ The agent uses Google's Generative AI (Gemini) API to make decisions and perform
 │   ├── rename_symbol.py        # Rename variables, functions, or classes
 │   └── add_dependency.py       # Add packages to requirements
 ├── main.py                     # Main AI agent implementation
+├── Dockerfile                  # Docker configuration
+├── docker-compose.yml          # Docker Compose configuration
+├── .dockerignore               # Docker ignore file
+├── requirements.txt            # Python dependencies
 └── pyproject.toml              # Project dependencies and metadata
 ```
 
@@ -88,6 +92,39 @@ The agent uses Google's Generative AI (Gemini) API to make decisions and perform
    GEMINI_API_KEY=your_gemini_api_key_here
    OPENROUTER_API_KEY=your_openrouter_api_key_here
    ```
+
+## Docker Support
+
+This project includes Docker support for easy deployment and consistent environments.
+
+### Building the Docker Image
+```bash
+docker build -t coding-assist-gemini .
+```
+
+### Running with Docker
+```bash
+docker run --rm -it \
+  -e GEMINI_API_KEY=your_gemini_api_key_here \
+  -e OPENROUTER_API_KEY=your_openrouter_api_key_here \
+  coding-assist-gemini "your request here"
+```
+
+### Using Docker Compose
+```bash
+# Create a .env file with your API keys
+docker-compose run --rm coding-assistant "your request here"
+```
+
+### Development with Docker
+```bash
+# Mount the current directory for development
+docker run --rm -it \
+  -v $(pwd):/app \
+  -e GEMINI_API_KEY=your_gemini_api_key_here \
+  -e OPENROUTER_API_KEY=your_openrouter_api_key_here \
+  coding-assist-gemini "your request here"
+```
 
 ## Usage
 

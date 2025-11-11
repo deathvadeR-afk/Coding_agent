@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  coding-assistant:
+    build: .
+    container_name: coding-assist-gemini
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    volumes:
+      - .:/app
+      - /app/__pycache__
+      - /app/.git
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    command: ["python", "main.py"]
